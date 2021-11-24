@@ -29,9 +29,9 @@ xsetroot -cursor_name left_ptr &
 #run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
 
 #Some ways to set your wallpaper besides variety or nitrogen
-feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
+feh --bg-fill $HOME/.xmonad/wall.jpg &
 #start the conky to learn the shortcuts
-#(conky -c $HOME/.xmonad/scripts/system-overview) &
+(conky -c $HOME/.xmonad/scripts/system-overview) &
 
 #starting utility applications at boot time
 #run variety &
@@ -41,6 +41,7 @@ run pamac-tray &
 run volumeicon &
 numlockx on &
 blueberry-tray &
+# timedatectl set-ntp on &
 picom --config $HOME/.xmonad/scripts/picom.conf &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &

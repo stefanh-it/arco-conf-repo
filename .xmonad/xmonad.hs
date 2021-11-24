@@ -60,7 +60,7 @@ myModMask = mod4Mask
 encodeCChar = map fromIntegral . B.unpack
 myFocusFollowsMouse = True
 myBorderWidth = 2
-myWorkspaces    = ["\61612","\61899","\61947","\61635","\61502","\61501","\61705","\61564","\62150","\61872"]
+myWorkspaces    = ["IB  \61612","PR  \61899","TS  \61947","LAB  \61635","CR  \61502","ZO  \61501","VM  \61705","FE  \61564","MSGR  \62150","\61872"]
 --myWorkspaces    = ["1","2","3","4","5","6","7","8","9","10"]
 --myWorkspaces    = ["I","II","III","IV","V","VI","VII","VIII","IX","X"]
 
@@ -86,7 +86,7 @@ myManageHook = composeAll . concat $
     ]
     where
     -- doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
-    myCFloats = ["Arandr", "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal"]
+    myCFloats = ["Arandr", "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "Zoom"]
     myTFloats = ["Downloads", "Save As..."]
     myRFloats = []
     myIgnores = ["desktop_window"]
@@ -135,19 +135,19 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   [ -- ((modMask, xK_e), spawn $ "thunar" )
    ((modMask, xK_c), spawn $ "conky-toggle" )
   , ((modMask, xK_f), sendMessage $ Toggle NBFULL)
-  , ((modMask, xK_h), spawn $ "urxvt 'htop task manager' -e htop" )
+  , ((modMask, xK_h), spawn $ "alacritty -e htop" )
   , ((modMask, xK_m), spawn $ "pragha" )
   , ((modMask, xK_q), kill )
   , ((modMask, xK_r), spawn $ "rofi-theme-selector" )
-  , ((modMask, xK_t), spawn $ "urxvt" )
+  , ((modMask, xK_t), spawn $ "alacritty -e fish" )
   , ((modMask, xK_v), spawn $ "pavucontrol" )
   , ((modMask, xK_y), spawn $ "polybar-msg cmd toggle" )
   , ((modMask, xK_x), spawn $ "arcolinux-logout" )
   , ((modMask, xK_Escape), spawn $ "xkill" )
-  , ((modMask, xK_Return), spawn $ "urxvt" )
-  , ((modMask, xK_F1), spawn $ "vivaldi-stable" )
-  , ((modMask, xK_F2), spawn $ "atom" )
-  , ((modMask, xK_F3), spawn $ "inkscape" )
+  , ((modMask, xK_Return), spawn $ "alacritty -e fish" )
+  , ((modMask, xK_F1), spawn $ "brave" )
+  , ((modMask, xK_F2), spawn $ "thunar" )
+  , ((modMask, xK_F3), spawn $ "google-chrome-stable" )
   , ((modMask, xK_F4), spawn $ "gimp" )
   , ((modMask, xK_F5), spawn $ "meld" )
   , ((modMask, xK_F6), spawn $ "vlc --video-on-top" )
@@ -159,7 +159,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_F12), spawn $ "rofi -show drun" )
 
   -- FUNCTION KEYS
-  , ((0, xK_F12), spawn $ "xfce4-terminal --drop-down" )
+  , ((0, xK_F12), spawn $ "xfce4-terminal" )
 
   -- SUPER + SHIFT KEYS
 
@@ -187,11 +187,11 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((controlMask .|. mod1Mask , xK_p ), spawn $ "pamac-manager")
   , ((controlMask .|. mod1Mask , xK_r ), spawn $ "rofi-theme-selector")
   , ((controlMask .|. mod1Mask , xK_s ), spawn $ "spotify")
-  , ((controlMask .|. mod1Mask , xK_t ), spawn $ "urxvt")
+  , ((controlMask .|. mod1Mask , xK_t ), spawn $ "alacritty -e fish")
   , ((controlMask .|. mod1Mask , xK_u ), spawn $ "pavucontrol")
   , ((controlMask .|. mod1Mask , xK_v ), spawn $ "vivaldi-stable")
   -- , ((controlMask .|. mod1Mask , xK_w ), spawn $ "arcolinux-welcome-app")
-  , ((controlMask .|. mod1Mask , xK_Return ), spawn $ "urxvt")
+  , ((controlMask .|. mod1Mask , xK_Return ), spawn $ "alacritty -e fish")
 
   -- ALT + ... KEYS
 
@@ -209,11 +209,11 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   --VARIETY KEYS WITH PYWAL
 
-  , ((mod1Mask .|. shiftMask , xK_f ), spawn $ "variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-  , ((mod1Mask .|. shiftMask , xK_n ), spawn $ "variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-  , ((mod1Mask .|. shiftMask , xK_p ), spawn $ "variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-  , ((mod1Mask .|. shiftMask , xK_t ), spawn $ "variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
-  , ((mod1Mask .|. shiftMask , xK_u ), spawn $ "wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+  -- , ((mod1Mask .|. shiftMask , xK_f ), spawn $ "variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+  -- , ((mod1Mask .|. shiftMask , xK_n ), spawn $ "variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+  -- , ((mod1Mask .|. shiftMask , xK_p ), spawn $ "variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+  -- , ((mod1Mask .|. shiftMask , xK_t ), spawn $ "variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
+  -- , ((mod1Mask .|. shiftMask , xK_u ), spawn $ "wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&")
 
   --CONTROL + SHIFT KEYS
 
@@ -221,9 +221,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   --SCREENSHOTS
 
-  , ((0, xK_Print), spawn $ "scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")
+  --, ((0, xK_Print), spawn $ "scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")
   , ((controlMask, xK_Print), spawn $ "xfce4-screenshooter" )
-  , ((controlMask .|. shiftMask , xK_Print ), spawn $ "gnome-screenshot -i")
+  , ((controlMask .|. shiftMask , xK_Print ), spawn $ "flameshot gui")
 
 
   --MULTIMEDIA KEYS
@@ -329,7 +329,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- | (i, k) <- zip (XMonad.workspaces conf) [xK_ampersand, xK_eacute, xK_quotedbl, xK_apostrophe, xK_parenleft, xK_section, xK_egrave, xK_exclam, xK_ccedilla, xK_agrave]
 
       , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)
-      , (\i -> W.greedyView i . W.shift i, shiftMask)]]
+      , (\i -> W.greedyView i . W.shift i, shiftMask)]
+      
+      ]
 
   -- ++
   -- ctrl-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
@@ -337,6 +339,14 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- [((m .|. controlMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
   --    | (key, sc) <- zip [xK_r, xK_e] [0..]
   --    , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+
+  ++
+  [
+      ((modMask , xK_period), nextScreen)  -- Switch focus to next monitor
+        , ((modMask , xK_comma), prevScreen)  -- Switch focus to prev monitor
+  ]
+
+
 
 
 main :: IO ()
