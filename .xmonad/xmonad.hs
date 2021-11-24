@@ -60,7 +60,7 @@ myModMask = mod4Mask
 encodeCChar = map fromIntegral . B.unpack
 myFocusFollowsMouse = True
 myBorderWidth = 2
-myWorkspaces    = ["IB  \61612","PR  \61899","TS  \61947","LAB  \61635","CR  \61502","ZO  \61501","VM  \61705","FE  \61564","MSGR  \62150","\61872"]
+myWorkspaces    = ["www  \61612","main  \61899","read  \61947","test  \61635","img  \61502","call  \61501","vm  \61705","mail  \61564","chat  \62150","rndm \61872"]
 --myWorkspaces    = ["1","2","3","4","5","6","7","8","9","10"]
 --myWorkspaces    = ["I","II","III","IV","V","VI","VII","VIII","IX","X"]
 
@@ -342,8 +342,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   ++
   [
-      ((modMask , xK_period), nextScreen)  -- Switch focus to next monitor
-        , ((modMask , xK_comma), prevScreen)  -- Switch focus to prev monitor
+      ((modMask , xK_comma), nextScreen)  -- Switch focus to next monitor
+        , ((modMask , xK_period), prevScreen)  -- Switch focus to prev monitor
   ]
 
 
