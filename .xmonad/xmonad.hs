@@ -68,43 +68,48 @@ myBaseConfig = desktopConfig
 
 -- window manipulations
 myManageHook = composeAll . concat $
-    [ [isDialog --> doCenterFloat]
-    , [className =? c --> doCenterFloat | c <- myCFloats]
+    [ 
+      [isDialog --> unfloat]
+    ,  [className =? c --> doCenterFloat | c <- myCFloats]
     , [title =? t --> doFloat | t <- myTFloats]
     , [resource =? r --> doFloat | r <- myRFloats]
     , [resource =? i --> doIgnore | i <- myIgnores]
-    -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61612" | x <- my1Shifts]
-    -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61899" | x <- my2Shifts]
-    -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61947" | x <- my3Shifts]
-    -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61635" | x <- my4Shifts]
-    -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61502" | x <- my5Shifts]
-    -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61501" | x <- my6Shifts]
-    -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61705" | x <- my7Shifts]
-    -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61564" | x <- my8Shifts]
-    -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\62150" | x <- my9Shifts]
-    -- , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "\61872" | x <- my10Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "www  \61612" | x <- my1Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "main \61899" | x <- my2Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "read \61947" | x <- my3Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "test \61635" | x <- my4Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "img \61502" | x <- my5Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "call \61501" | x <- my6Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "vm \61705" | x <- my7Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "mail \61564" | x <- my8Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "chat \62150" | x <- my9Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "rndm \61872" | x <- my10Shifts]
     ]
     where
-    -- doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
-    myCFloats = ["Arandr", "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "Zoom"]
-    myTFloats = ["Downloads", "Save As..."]
+    unfloat = ask >>= doF . W.sink
+    doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
+    myCFloats = []
+		-- , "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "Zoom"]
+    myTFloats = []
+			-- "Downloads", "Save As..."
+	
     myRFloats = []
-    myIgnores = ["desktop_window"]
-    -- my1Shifts = ["Chromium", "Vivaldi-stable", "Firefox"]
-    -- my2Shifts = []
-    -- my3Shifts = ["Inkscape"]
-    -- my4Shifts = []
-    -- my5Shifts = ["Gimp", "feh"]
-    -- my6Shifts = ["vlc", "mpv"]
-    -- my7Shifts = ["Virtualbox"]
-    -- my8Shifts = ["Thunar"]
-    -- my9Shifts = []
-    -- my10Shifts = ["discord"]
+    myIgnores = ["desktop_window", "Save As...", "Downloads", "Open", "Dialog"]
+    my1Shifts = []--"Chromium", "Vivaldi-stable", "Firefox"]
+    my2Shifts = []
+    my3Shifts = []
+    my4Shifts = []
+    my5Shifts = []--"Gimp", "feh"]
+    my6Shifts = ["Zoom"]
+    my7Shifts = ["Virtualbox"]
+    my8Shifts = ["Thunderbird"]
+    my9Shifts = ["discord", "telegram-desktop", "signal-desktop"]
+    my10Shifts = ["bitwarden-desktop"]
 
 
 
 
-myLayout = spacingRaw True (Border 1 1 1 1) True (Border 1 1 1 1) True $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Mirror tiled ||| spiral (6/7)  ||| ThreeColMid 1 (3/100) (1/2) ||| Full
+myLayout = spacingRaw True (Border 3 3 3 3) True (Border 1 1 1 1) True $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Mirror tiled ||| spiral (6/7)  ||| ThreeColMid 1 (3/100) (1/2) ||| Full
     where
         tiled = Tall nmaster delta tiled_ratio
         nmaster = 1
@@ -139,7 +144,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_m), spawn $ "pragha" )
   , ((modMask, xK_q), kill )
   , ((modMask, xK_r), spawn $ "rofi-theme-selector" )
-  , ((modMask, xK_t), spawn $ "alacritty -e fish" )
+  --, ((modMask, xK_t), spawn $ "alacritty -e fish" ) used in Push back to tiling
   , ((modMask, xK_v), spawn $ "pavucontrol" )
   , ((modMask, xK_y), spawn $ "polybar-msg cmd toggle" )
   , ((modMask, xK_x), spawn $ "arcolinux-logout" )
@@ -148,15 +153,15 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_F1), spawn $ "brave" )
   , ((modMask, xK_F2), spawn $ "thunar" )
   , ((modMask, xK_F3), spawn $ "google-chrome-stable" )
-  , ((modMask, xK_F4), spawn $ "gimp" )
-  , ((modMask, xK_F5), spawn $ "meld" )
+  -- , ((modMask, xK_F4), spawn $ "gimp" )
+  -- , ((modMask, xK_F5), spawn $ "meld" )
   , ((modMask, xK_F6), spawn $ "vlc --video-on-top" )
   , ((modMask, xK_F7), spawn $ "virtualbox" )
   , ((modMask, xK_F8), spawn $ "thunar" )
-  , ((modMask, xK_F9), spawn $ "evolution" )
+  -- , ((modMask, xK_F9), spawn $ "evolution" )
   , ((modMask, xK_F10), spawn $ "spotify" )
-  , ((modMask, xK_F11), spawn $ "rofi -show drun -fullscreen" )
-  , ((modMask, xK_F12), spawn $ "rofi -show drun" )
+  -- , ((modMask, xK_F11), spawn $ "rofi -show drun -fullscreen" )
+  -- , ((modMask, xK_F12), spawn $ "rofi -show drun" )
 
   -- FUNCTION KEYS
   , ((0, xK_F12), spawn $ "xfce4-terminal" )
@@ -175,11 +180,11 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((controlMask .|. mod1Mask , xK_Prior ), spawn $ "conky-rotate -p")
   , ((controlMask .|. mod1Mask , xK_a ), spawn $ "xfce4-appfinder")
   , ((controlMask .|. mod1Mask , xK_b ), spawn $ "thunar")
-  , ((controlMask .|. mod1Mask , xK_c ), spawn $ "catfish")
+  -- , ((controlMask .|. mod1Mask , xK_c ), spawn $ "catfish")
   -- , ((controlMask .|. mod1Mask , xK_e ), spawn $ "arcolinux-tweak-tool")
   , ((controlMask .|. mod1Mask , xK_f ), spawn $ "firefox")
-  , ((controlMask .|. mod1Mask , xK_g ), spawn $ "chromium -no-default-browser-check")
-  , ((controlMask .|. mod1Mask , xK_i ), spawn $ "nitrogen")
+  -- , ((controlMask .|. mod1Mask , xK_g ), spawn $ "chromium -no-default-browser-check")
+  -- , ((controlMask .|. mod1Mask , xK_i ), spawn $ "nitrogen")
   , ((controlMask .|. mod1Mask , xK_k ), spawn $ "arcolinux-logout")
   , ((controlMask .|. mod1Mask , xK_l ), spawn $ "arcolinux-logout")
   , ((controlMask .|. mod1Mask , xK_m ), spawn $ "xfce4-settings-manager")
@@ -195,15 +200,15 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- ALT + ... KEYS
 
-  , ((mod1Mask, xK_f), spawn $ "variety -f" )
-  , ((mod1Mask, xK_n), spawn $ "variety -n" )
-  , ((mod1Mask, xK_p), spawn $ "variety -p" )
+  -- , ((mod1Mask, xK_f), spawn $ "variety -f" )
+  -- , ((mod1Mask, xK_n), spawn $ "variety -n" )
+  -- , ((mod1Mask, xK_p), spawn $ "variety -p" )
   , ((mod1Mask, xK_r), spawn $ "xmonad --restart" )
-  , ((mod1Mask, xK_t), spawn $ "variety -t" )
-  , ((mod1Mask, xK_Up), spawn $ "variety --pause" )
-  , ((mod1Mask, xK_Down), spawn $ "variety --resume" )
-  , ((mod1Mask, xK_Left), spawn $ "variety -p" )
-  , ((mod1Mask, xK_Right), spawn $ "variety -n" )
+  -- , ((mod1Mask, xK_t), spawn $ "variety -t" )
+  -- , ((mod1Mask, xK_Up), spawn $ "variety --pause" )
+  -- , ((mod1Mask, xK_Down), spawn $ "variety --resume" )
+  -- , ((mod1Mask, xK_Left), spawn $ "variety -p" )
+  -- , ((mod1Mask, xK_Right), spawn $ "variety -n" )
   , ((mod1Mask, xK_F2), spawn $ "xfce4-appfinder --collapsed" )
   , ((mod1Mask, xK_F3), spawn $ "xfce4-appfinder" )
 
@@ -303,7 +308,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((controlMask .|. shiftMask , xK_l), sendMessage Expand)
 
   -- Push window back into tiling.
-  , ((controlMask .|. shiftMask , xK_t), withFocused $ windows . W.sink)
+  -- , ((controlMask .|. shiftMask , xK_t), withFocused $ windows . W.sink) -- remove ctrl - shift + t for browser support
+	, ((modMask, xK_t), withFocused $ windows . W.sink)
 
   -- Increment the number of windows in the master area.
   , ((controlMask .|. modMask, xK_Left), sendMessage (IncMasterN 1))

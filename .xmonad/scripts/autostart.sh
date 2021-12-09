@@ -31,7 +31,7 @@ xsetroot -cursor_name left_ptr &
 #Some ways to set your wallpaper besides variety or nitrogen
 feh --bg-fill $HOME/.xmonad/wall.jpg &
 #start the conky to learn the shortcuts
-(conky -c $HOME/.xmonad/scripts/system-overview) &
+#(conky -c $HOME/.xmonad/scripts/system-overview) &
 
 #starting utility applications at boot time
 #run variety &
