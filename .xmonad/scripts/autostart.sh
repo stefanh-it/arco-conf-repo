@@ -20,7 +20,7 @@ xrandr --output HDMI-0 --mode 1920x1080 right-of DP-0
 (sleep 2; run $HOME/.config/polybar/launch.sh) &
 
 #change your keyboard if you need it
-setxkbmap -layout de
+setxkbmap -layout de &
 
 #cursor active at boot
 xsetroot -cursor_name left_ptr &
@@ -36,11 +36,11 @@ feh --bg-fill $HOME/.xmonad/wall.jpg &
 #starting utility applications at boot time
 #run variety &
 run nm-applet &
-run pamac-tray &
+# run pamac-tray &
 # run xfce4-power-manager &
-run volumeicon &
+# run volumeicon &
 numlockx on &
-blueberry-tray &
+# blueberry-tray &
 # timedatectl set-ntp on &
 picom --config $HOME/.xmonad/scripts/picom.conf &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

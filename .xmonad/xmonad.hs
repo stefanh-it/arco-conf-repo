@@ -89,17 +89,18 @@ myManageHook = composeAll . concat $
     unfloat = ask >>= doF . W.sink
     doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
     myCFloats = []
-		-- , "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "Zoom"]
+-- , "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "Zoom"]
     myTFloats = []
-			-- "Downloads", "Save As..."
-	
+-- "Downloads", "Save As..."
     myRFloats = []
     myIgnores = ["desktop_window", "Save As...", "Downloads", "Open", "Dialog"]
-    my1Shifts = []--"Chromium", "Vivaldi-stable", "Firefox"]
+    my1Shifts = []
+--"Chromium", "Vivaldi-stable", "Firefox"]
     my2Shifts = []
     my3Shifts = []
     my4Shifts = []
-    my5Shifts = []--"Gimp", "feh"]
+    my5Shifts = []
+--"Gimp", "feh"]
     my6Shifts = ["Zoom"]
     my7Shifts = ["Virtualbox"]
     my8Shifts = ["Thunderbird"]
@@ -307,7 +308,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Expand the master area.
   , ((controlMask .|. shiftMask , xK_l), sendMessage Expand)
 
-  -- Push window back into tiling.
+-- Push window back into tiling.
   -- , ((controlMask .|. shiftMask , xK_t), withFocused $ windows . W.sink) -- remove ctrl - shift + t for browser support
 	, ((modMask, xK_t), withFocused $ windows . W.sink)
 

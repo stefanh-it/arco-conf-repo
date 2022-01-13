@@ -1,7 +1,7 @@
 
-xmonad.hs:92:1: warning: [-Wtabs]
-    Tab character found here, and in six further locations.
+xmonad.hs:313:1: warning: [-Wtabs]
+    Tab character found here.
     Please use spaces instead.
-   |
-92 |                 -- , "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "Zoom"]
-   | ^^^^^^^^
+    |
+313 |         , ((modMask, xK_t), withFocused $ windows . W.sink)
+    | ^^^^^^^^
