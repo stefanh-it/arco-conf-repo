@@ -45,8 +45,9 @@ myStartupHook = do
     setWMName "LG3D"
 
 -- colours
-normBord = "#4c566a"
-focdBord = "#5e81ac"
+normBord = "#4C566A"
+--focdBord = "#5e81ac"
+focdBord = "#3384d0"
 fore     = "#DEE3E0"
 back     = "#282c34"
 winType  = "#c678dd"
@@ -59,7 +60,7 @@ winType  = "#c678dd"
 myModMask = mod4Mask
 encodeCChar = map fromIntegral . B.unpack
 myFocusFollowsMouse = True
-myBorderWidth = 2
+myBorderWidth = 3  
 myWorkspaces    = ["www  \61612","main  \61899","read  \61947","test  \61635","img  \61502","call  \61501","vm  \61705","mail  \61564","chat  \62150","rndm \61872"]
 --myWorkspaces    = ["1","2","3","4","5","6","7","8","9","10"]
 --myWorkspaces    = ["I","II","III","IV","V","VI","VII","VIII","IX","X"]
@@ -108,7 +109,7 @@ myManageHook = composeAll . concat $
 
 
 
-myLayout = spacingRaw True (Border 3 3 3 3) True (Border 1 1 1 1) True $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Mirror tiled ||| spiral (6/7)  ||| ThreeColMid 1 (3/100) (1/2) ||| Full
+myLayout = spacingRaw True (Border 2 2 2 2) True (Border 2 2 2 2) True $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Mirror tiled ||| spiral (6/7)  ||| ThreeColMid 1 (3/100) (1/2) ||| Full
     where
         tiled = Tall nmaster delta tiled_ratio
         nmaster = 1
