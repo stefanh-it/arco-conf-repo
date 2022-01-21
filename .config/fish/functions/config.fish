@@ -1,3 +1,3 @@
 function config
-git --git-dir=$HOME/conf-repo/ --work-tree=$HOME
+git --git-dir=$HOME/dotfiles/.git --work-tree=$HOME $argv
 end

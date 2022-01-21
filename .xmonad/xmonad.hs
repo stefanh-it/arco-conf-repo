@@ -95,15 +95,13 @@ myManageHook = composeAll . concat $
     myRFloats = []
     myIgnores = ["desktop_window", "Save As...", "Downloads", "Open", "Dialog"]
     my1Shifts = []
---"Chromium", "Vivaldi-stable", "Firefox"]
     my2Shifts = []
     my3Shifts = []
     my4Shifts = []
     my5Shifts = []
---"Gimp", "feh"]
-    my6Shifts = ["Zoom"]
-    my7Shifts = ["Virtualbox"]
-    my8Shifts = ["Thunderbird"]
+    my6Shifts = ["zoom"]
+    my7Shifts = ["virtualbox"]
+    my8Shifts = ["thunderbird"]
     my9Shifts = ["discord", "telegram-desktop", "signal-desktop"]
     my10Shifts = ["bitwarden-desktop"]
 
@@ -310,7 +308,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 -- Push window back into tiling.
   -- , ((controlMask .|. shiftMask , xK_t), withFocused $ windows . W.sink) -- remove ctrl - shift + t for browser support
-	, ((modMask, xK_t), withFocused $ windows . W.sink)
+  , ((modMask, xK_t), withFocused $ windows . W.sink)
 
   -- Increment the number of windows in the master area.
   , ((controlMask .|. modMask, xK_Left), sendMessage (IncMasterN 1))

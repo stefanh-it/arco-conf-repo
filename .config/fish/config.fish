@@ -2,15 +2,17 @@ if status is-interactive
 
     neofetch
 
-    alias config="/usr/bin/git --git-dir=$HOME/conf-repo/ --work-tree=$HOME"
+    
     
     # Commands to run in interactive sessions can go here
+    set -gx BROWSER brave
+    set -gx EDITOR nvim
     starship init fish | source
-
+    
     
 
 
 end
 
-alias config="/usr/bin/git --git-dir=$HOME/conf-repo/ --work-tree=$HOME"
+
 

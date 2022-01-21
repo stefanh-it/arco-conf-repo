@@ -12,10 +12,8 @@ function run {
 #run $HOME/.xmonad/scripts/set-screen-resolution-in-virtualbox.sh
 
 #Find out your monitor name with xrandr or arandr (save and you get this line)
-#xrandr --output VGA-1 --primary --mode 1360x768 --pos 0x0 --rotate normal
-xrandr --output DP-0 --primary --mode 2560x1440 --rate 59.94 &
-xrandr --output DVI-I-1 --mode 1920x1080 --left-of DP-0 &
-xrandr --output HDMI-0 --mode 1920x1080 right-of DP-0
+xrandr --output DP-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --primary --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-3 --off --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-4 --mode 1920x1080 --pos 4480x0 --rotate normal --output DP-5 --off
+
 
 (sleep 2; run $HOME/.config/polybar/launch.sh) &
 

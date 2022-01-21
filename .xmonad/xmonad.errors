@@ -1,7 +1,0 @@
-
-xmonad.hs:313:1: warning: [-Wtabs]
-    Tab character found here.
-    Please use spaces instead.
-    |
-313 |         , ((modMask, xK_t), withFocused $ windows . W.sink)
-    | ^^^^^^^^
