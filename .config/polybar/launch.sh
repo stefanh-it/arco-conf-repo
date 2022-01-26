@@ -91,14 +91,14 @@ case $desktop in
     ;;
 
     xmonad|/usr/share/xsessions/xmonad)
-    if [ $count = 1 ]; then
-      m=$(xrandr --query | grep " connected" | cut -d" " -f1)
-      MONITOR=$m polybar --reload mainbar-xmonad -c ~/.config/polybar/config &
-    else
-      for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-        MONITOR=$m polybar --reload mainbar-xmonad -c ~/.config/polybar/config &
-      done
-    fi
+    #if [ $count = 1 ]; then
+    #  m=$(xrandr --query | grep " connected" | cut -d" " -f1)
+    #  MONITOR=$m polybar --reload mainbar-xmonad -c ~/.config/polybar/config &
+    #else
+    #  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    #    MONITOR=$m polybar --reload mainbar-xmonad -c ~/.config/polybar/config &
+    #  done
+    #fi
     # second polybar at bottom
     # if [ $count = 1 ]; then
     #   m=$(xrandr --query | grep " connected" | cut -d" " -f1)
@@ -108,6 +108,15 @@ case $desktop in
     #     MONITOR=$m polybar --reload mainbar-xmonad-extra -c ~/.config/polybar/config &
     #   done
     # fi
+	##CUSTOM STEFAN
+
+	PRIMARY=$(xrandr --query | grep " connected" | grep "primary" | cut -d" " -f1)
+	SECONDARY=$(xrandr --query | grep " connected" | grep -v "primary" | cut -d" " -f1)
+		MONITOR=$PRIMARY polybar --reload mainbar-xmonad -c ~/.config/polybar/config & 
+		sleep 1
+    for m in $SECONDARY; do
+		MONITOR=$m polybar --reload xmonad-no-tray -c ~/.config/polybar/config &
+	done
     ;;
 
     spectrwm|/usr/share/xsessions/spectrwm)
