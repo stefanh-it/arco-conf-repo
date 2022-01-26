@@ -39,7 +39,7 @@ format-offset =
 
 [colors]
 ; Nord theme ============
-background = #2F343F
+background = #cc2F343F
 foreground = #f3f4f5
 occupied = #cccccc
 active = #5e81ac
@@ -1824,7 +1824,7 @@ format-prefix = ""
 
 [module/ewmh]
 type = internal/xworkspaces
-
+##changed pin-workspaces from false to true
 pin-workspaces = false
 enable-click = true
 enable-scroll = true
@@ -1841,9 +1841,11 @@ format = <label-state>
 label-monitor = %name%
 
 label-active = %name%
-label-active-foreground = ${colors.foreground}
+;label-active-foreground = ${colors.foreground}
+label-active-foreground = #6790eb
 label-active-background = ${colors.background}
 label-active-underline= #6790eb
+;label-active-underline= #ffffff
 label-active-padding = 2
 
 label-occupied = %name%

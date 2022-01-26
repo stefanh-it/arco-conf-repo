@@ -88,7 +88,7 @@ myManageHook = composeAll . concat $
     where
     unfloat = ask >>= doF . W.sink
     doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
-    myCFloats = []
+    myCFloats = ["mpv"]
 -- , "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "Zoom"]
     myTFloats = []
 -- "Downloads", "Save As..."
