@@ -28,7 +28,6 @@ import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
 import XMonad.Layout.IndependentScreens
 
-
 import XMonad.Layout.CenteredMaster(centerMaster)
 
 import Graphics.X11.ExtraTypes.XF86
@@ -76,15 +75,15 @@ myManageHook = composeAll . concat $
     , [resource =? r --> doFloat | r <- myRFloats]
     , [resource =? i --> doIgnore | i <- myIgnores]
     , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "www  \61612" | x <- my1Shifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "main \61899" | x <- my2Shifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "read \61947" | x <- my3Shifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "test \61635" | x <- my4Shifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "img \61502" | x <- my5Shifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "call \61501" | x <- my6Shifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "vm \61705" | x <- my7Shifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "mail \61564" | x <- my8Shifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "chat \62150" | x <- my9Shifts]
-    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "rndm \61872" | x <- my10Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "main  \61899" | x <- my2Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "read  \61947" | x <- my3Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "test  \61635" | x <- my4Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "img  \61502" | x <- my5Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "call  \61501" | x <- my6Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "vm  \61705" | x <- my7Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "mail  \61564" | x <- my8Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "chat  \62150" | x <- my9Shifts]
+    , [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "rndm  \61872" | x <- my10Shifts]
     ]
     where
     unfloat = ask >>= doF . W.sink
@@ -99,12 +98,12 @@ myManageHook = composeAll . concat $
     my2Shifts = []
     my3Shifts = []
     my4Shifts = []
-    my5Shifts = []
+    my5Shifts = ["kdenlive", "spotify"]
     my6Shifts = ["zoom"]
     my7Shifts = ["virtualbox"]
     my8Shifts = ["thunderbird"]
-    my9Shifts = ["discord", "telegram-desktop", "signal-desktop"]
-    my10Shifts = ["bitwarden-desktop"]
+    my9Shifts = ["telegram-desktop", "signal-desktop"]
+    my10Shifts = ["bitwarden-desktop", "discord"]
 
 
 
@@ -172,6 +171,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. shiftMask , xK_d ), spawn $ "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'")
   , ((modMask .|. shiftMask , xK_r ), spawn $ "xmonad --recompile && xmonad --restart")
   , ((modMask .|. shiftMask , xK_q ), kill)
+  
   -- , ((modMask .|. shiftMask , xK_x ), io (exitWith ExitSuccess))
 
   -- CONTROL + ALT KEYS
