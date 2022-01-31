@@ -16,3 +16,4 @@ end
 
 
 
+rvm default
