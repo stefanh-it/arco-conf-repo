@@ -15,6 +15,7 @@ function run {
 xrandr --output DP-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --primary --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-3 --off --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-4 --mode 1920x1080 --pos 4480x0 --rotate normal --output DP-5 --off
 
 
+
 #change your keyboard if you need it
 setxkbmap -layout de &
 
@@ -32,12 +33,11 @@ feh --bg-fill $HOME/.xmonad/wall.jpg &
 #starting utility applications at boot time
 #run variety &
 run nm-applet &
-# run pamac-tray &
-# run xfce4-power-manager &
-# run volumeicon &
+#run pamac-tray &
+#run xfce4-power-manager &
+#run volumeicon &
 numlockx on &
-# blueberry-tray &
-# timedatectl set-ntp on &
+#blueberry-tray &
 picom --config $HOME/.xmonad/scripts/picom.conf &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &

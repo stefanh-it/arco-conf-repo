@@ -181,7 +181,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. shiftMask , xK_d ), spawn $ "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'")
   , ((modMask .|. shiftMask , xK_r ), spawn $ "xmonad --recompile && xmonad --restart")
   , ((modMask .|. shiftMask , xK_q ), kill)
-  
   -- , ((modMask .|. shiftMask , xK_x ), io (exitWith ExitSuccess))
 
   -- CONTROL + ALT KEYS
@@ -202,11 +201,11 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((controlMask .|. mod1Mask , xK_p ), spawn $ "pamac-manager")
   , ((controlMask .|. mod1Mask , xK_r ), spawn $ "rofi-theme-selector")
   , ((controlMask .|. mod1Mask , xK_s ), spawn $ "spotify")
-  , ((controlMask .|. mod1Mask , xK_t ), spawn $ "alacritty -e fish")
+  , ((controlMask .|. mod1Mask , xK_t ), spawn $ "alacritty")
   , ((controlMask .|. mod1Mask , xK_u ), spawn $ "pavucontrol")
   , ((controlMask .|. mod1Mask , xK_v ), spawn $ "vivaldi-stable")
-  -- , ((controlMask .|. mod1Mask , xK_w ), spawn $ "arcolinux-welcome-app")
-  , ((controlMask .|. mod1Mask , xK_Return ), spawn $ "alacritty -e fish")
+  , ((controlMask .|. mod1Mask , xK_w ), spawn $ "arcolinux-welcome-app")
+  , ((controlMask .|. mod1Mask , xK_Return ), spawn $ "alacritty")
 
   -- ALT + ... KEYS
 
@@ -354,6 +353,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
       , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)
       , (\i -> W.greedyView i . W.shift i, shiftMask)]]
+
   ++
   -- ctrl-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
   -- ctrl-shift-{w,e,r}, Move client to screen 1, 2, or 3
