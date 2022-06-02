@@ -49,13 +49,13 @@ import Control.Monad (liftM2)
 myModMask                     = mod4Mask
 mydefaults = def {
           normalBorderColor   = "#4c566a"
-        , focusedBorderColor  = "#5e81ac"
+        , focusedBorderColor  = "#5eacac" --existing #5e81ac
         , focusFollowsMouse   = True
         , mouseBindings       = myMouseBindings
         , workspaces          = myWorkspaces
         , keys                = myKeys
         , modMask             = myModMask
-        , borderWidth         = 2
+        , borderWidth         = 3
         , layoutHook          = myLayoutHook
         , startupHook         = myStartupHook
         , manageHook          = myManageHook
@@ -156,7 +156,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   --, ((modMask, xK_t), spawn $ "alacritty -e fish" ) used in Push back to tiling
   , ((modMask, xK_v), spawn $ "pavucontrol" )
   , ((modMask, xK_y), spawn $ "polybar-msg cmd toggle" )
-  , ((modMask, xK_x), spawn $ "arcolinux-logout" )
+  , ((modMask, xK_x), spawn $ "archlinux-logout" )
   , ((modMask, xK_Escape), spawn $ "xkill" )
   , ((modMask, xK_Return), spawn $ "alacritty -e fish" )
   , ((modMask, xK_F1), spawn $ "brave" )

@@ -8,7 +8,7 @@ Config {
    , fgColor          = "white"
    , position         = TopSize C 100 30
    , textOffset       = -1
-   , iconOffset       = 0
+   , iconOffset       = -1
    , alpha            = 255
    , border           = BottomB
    , borderWidth      = 0
@@ -21,7 +21,8 @@ Config {
    , persistent       = True
    , sepChar          = "%"
    , alignSep         = "}{"
-   , template         = "<fc=white><fn=2><action=button=4><action=button=5>%UnsafeStdinReader%</action></action></fn></fc>}<action=`gsimplecal` button=1>%date%</action>{<fc=white> %eno1% | %update% |<fn=2>  </fn></fc> %kbd% |  %multicpu% | %memory% "
+	 , iconRoot					= ".xmonad/xpm/"
+, template         = "<fc=white><fn=2>  <icon=haskell_20.xpm/>   </fn><fn=2><action=button=4><action=button=5>%UnsafeStdinReader%</action></action></fn></fc>}<action=`gsimplecal` button=1>%date%</action>{<fc=white> %eno1% | %update% |<fn=2>  </fn></fc> %kbd% |  %multicpu%  |  %memory% "
    , commands         =
       [ Run MultiCpu                            [ "--template" , "<fc=white><fn=2>  </fn></fc><fc=white></fc><total> %"
                                                 , "--Low"      , "50"        -- units: %
@@ -31,13 +32,13 @@ Config {
                                                 , "--high"     , "#fd0537"
                                                 ] 10
 
---      , Run CoreTemp                            [ "--template" , "<fc=white><fn=2>  </fn></fc><fc=green></fc><core0> °C"
---                                                , "--Low"      , "2"         -- units: °C
---                                                , "--High"     , "80"        -- units: °C
---                                                , "--low"      , "#ffffff"
---                                                , "--normal"   , "#ffffff"
---                                                , "--high"     , "#fd0537"
---                                               ] 10
+      , Run CoreTemp                            [ "--template" , "<fc=white><fn=2>  </fn></fc><fc=green></fc><core0> °C"
+                                                , "--Low"      , "2"         -- units: °C
+                                                , "--High"     , "80"        -- units: °C
+                                                , "--low"      , "#ffffff"
+                                                , "--normal"   , "#ffffff"
+                                                , "--high"     , "#fd0537"
+                                               ] 10
 
       , Run Memory                              [ "--template" ,"<fc=white><fn=2> </fn></fc><fc=white></fc><usedratio> %"
                                                 ] 10
@@ -49,7 +50,7 @@ Config {
 
 --      , Run Com "/bin/bash" ["-c", "XMgetvolume"]  "XVol" 10
 
-      , Run Network				 "eno1"		   [ "--template" , "<fc=white> down <rx> | up <tx> </fc>"
+      , Run Network				 "eno1"		   [ "--template" , "<fc=white><fn=2><icon=net_down_20.xpm/></fn> <rx> | <fn=2><icon=net_up_20.xpm/></fn> <tx> </fc>"
 											    , "-S" , "True" 
 											  ] 10
 
@@ -62,6 +63,6 @@ Config {
 
 	  , Run Com "/bin/bash" ["-c",  "XMKupdate"] "update" 600
 
-      , Run Date                                "CW %V %d.%m.%Y  %H:%M" "date" 60]
+      , Run Date                                "CW%V | %d.%m.%Y | %H:%M" "date" 60]
 
 }

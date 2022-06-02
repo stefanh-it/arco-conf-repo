@@ -3,7 +3,6 @@ set softtabstop=2           " see multiple spaces as tabstops so <BS> does the r
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
-"filetype plugin indent on   "allow auto-indenting depending on file type
 syntax on                   " syntax highlighting
 filetype plugin on 	
 set cursorline				" highlight current cursorline
