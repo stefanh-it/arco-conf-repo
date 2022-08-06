@@ -14,6 +14,8 @@ import XMonad.Actions.SpawnOn
 import XMonad.Util.EZConfig (additionalKeys, additionalMouseBindings)
 import XMonad.Actions.CycleWS
 import XMonad.Hooks.UrgencyHook
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
 import qualified Codec.Binary.UTF8.String as UTF8
 import qualified XMonad.Actions.DynamicWorkspaceOrder as DO
 
@@ -59,7 +61,7 @@ mydefaults = def {
         , layoutHook          = myLayoutHook
         , startupHook         = myStartupHook
         , manageHook          = myManageHook
-        , handleEventHook     = fullscreenEventHook <+> docksEventHook <+> minimizeEventHook
+        , handleEventHook     = minimizeEventHook
         }
 
 -- Autostart
@@ -69,8 +71,8 @@ myStartupHook = do
 
 encodeCChar = map fromIntegral . B.unpack
 
-myTitleColor = "#c91a1a" -- color of window title
-myTitleLength = 80 -- truncate window title to this length
+myTitleColor = "#ffffff"-- "#c91a1a" -- color of window title
+myTitleLength = 60 -- truncate window title to this length
 myCurrentWSColor = "#6790eb" -- color of active workspace
 myVisibleWSColor = "#aaaaaa" -- color of inactive workspace
 myUrgentWSColor = "#c91a1a" -- color of workspace with 'urgent' window
@@ -123,7 +125,7 @@ myManageHook = composeAll . concat $
 
 
     viewShift = doF . liftM2 (.) W.greedyView W.shift
-    myCFloats = ["mpv"]
+    myCFloats = ["mpv", "Archlinux-logout.py"]
 -- , "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "Zoom"]
     myTFloats = []
 -- "Downloads", "Save As..."
@@ -134,11 +136,11 @@ myManageHook = composeAll . concat $
     my3Shifts = []
     my4Shifts = []
     my5Shifts = ["kdenlive", "spotify"]
-    my6Shifts = ["zoom"]
+    my6Shifts = ["zoom "]
     my7Shifts = ["virtualbox"]
     my8Shifts = ["thunderbird"]
     my9Shifts = ["telegram-desktop", "signal-desktop"]
-    my10Shifts = ["bitwarden-desktop", "discord"]
+    my10Shifts = ["Bitwarden", "discord"]
 
 -- keys config
 
@@ -361,10 +363,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   --    | (key, sc) <- zip [xK_r, xK_e] [0..]
   --    , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
-  [
-      ((modMask , xK_comma), nextScreen)  -- Switch focus to next monitor
-        , ((modMask , xK_period), prevScreen)  -- Switch focus to prev monitor
-  ]
+    [ ((modMask , xK_comma), nextScreen)  -- Switch focus to next monitor
+    , ((modMask , xK_period), prevScreen)  -- Switch focus to prev monitor
+    ]
 
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 
@@ -388,7 +389,10 @@ main = do
         xmonad $ ewmh $ mydefaults {
         logHook =  dynamicLogWithPP $ def {
         ppOutput = \x -> System.IO.hPutStrLn xmproc0 x  >> System.IO.hPutStrLn xmproc1 x >> System.IO.hPutStrLn xmproc2 x
-        , ppTitle = xmobarColor myTitleColor "" . ( \ str -> "")
+        , ppTitle =  xmobarColor myTitleColor "" . xmobarFont 0 . shorten 60
+
+				-- . wrap "<fn=0>""</fn>" --  (\ str -> "")
+        , ppOrder = \(ws:l:t:_) -> [ws,l,t]
         , ppCurrent = xmobarColor myCurrentWSColor "" . wrap """"
         , ppVisible = xmobarColor myVisibleWSColor "" . wrap """"
         , ppHidden = wrap """"

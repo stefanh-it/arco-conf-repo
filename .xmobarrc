@@ -4,7 +4,7 @@
 Config {
     font = "xft:Noto Sans LGC:size=11:style=Regular",
     additionalFonts = ["xft:Noto Sans:size=10:style=Bold","xft:FontAwesome:style=Regular:size=13"]
-   , bgColor          = "#2F343F"
+   , bgColor          = "#536878" --"#2F343F"
    , fgColor          = "white"
    , position         = TopSize C 100 30
    , textOffset       = -1
@@ -22,7 +22,14 @@ Config {
    , sepChar          = "%"
    , alignSep         = "}{"
 	 , iconRoot					= ".xmonad/xpm/"
-, template         = "<fc=white><fn=2>  <icon=haskell_20.xpm/>   </fn><fn=2><action=button=4><action=button=5>%UnsafeStdinReader%</action></action></fn></fc>}<action=`gsimplecal` button=1>%date%</action>{<fc=white> %eno1% | %update% |<fn=2>  </fn></fc> %kbd% |  %multicpu%  |  %memory% "
+   , template         = "<fc=white><fn=2>  <icon=haskell_20.xpm/>   \
+												\</fn><fn=2><action=button=4><action=button=5>%UnsafeStdinReader%\
+												\</action></action></fn></fc> \
+												
+												\}<action=`gsimplecal` button=1>%date%</action>\
+                        
+												\{<fc=white> %eno1% | %update% | <fn=2>  </fn></fc> %kbd% |\
+												\ %multicpu%  |  %memory%  |<fc=white> <fn=2>  </fn> %uname% </fc> "
    , commands         =
       [ Run MultiCpu                            [ "--template" , "<fc=white><fn=2>  </fn></fc><fc=white></fc><total> %"
                                                 , "--Low"      , "50"        -- units: %
@@ -50,7 +57,7 @@ Config {
 
 --      , Run Com "/bin/bash" ["-c", "XMgetvolume"]  "XVol" 10
 
-      , Run Network				 "eno1"		   [ "--template" , "<fc=white><fn=2><icon=net_down_20.xpm/></fn> <rx> | <fn=2><icon=net_up_20.xpm/></fn> <tx> </fc>"
+      , Run Network				 "eno1"		   [ "--template" , "<fc=white><fn=2><icon=net_down_20.xpm/></fn> <rx>  | <fn=2><icon=net_up_20.xpm/></fn> <tx> </fc>"
 											    , "-S" , "True" 
 											  ] 10
 
@@ -61,8 +68,11 @@ Config {
 
       , Run UnsafeStdinReader
 
-	  , Run Com "/bin/bash" ["-c",  "XMKupdate"] "update" 600
+	    , Run Com "/bin/bash" ["-c",  "XMKupdate"] "update" 600 
 
-      , Run Date                                "CW%V | %d.%m.%Y | %H:%M" "date" 60]
+      , Run Date                                "CW%V | %d.%m.%Y | %H:%M" "date" 60
+
+      -- , Run Com "uname" ["-s", "-r"] "" 36000]
+			, Run Com "/bin/bash" ["-c", "uname -s -r"] "uname" 3600]
 
 }

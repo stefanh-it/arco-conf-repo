@@ -41,7 +41,7 @@ numlockx on &
 picom --config $HOME/.xmonad/scripts/picom.conf &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
-
+run thunderbird &
 #starting user applications at boot time
 #nitrogen --restore &
 #run caffeine &
