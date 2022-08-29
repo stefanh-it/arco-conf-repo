@@ -81,11 +81,11 @@ window:
   # Allow terminal applications to change Alacritty's window title.
   #dynamic_title: true
   # Window class (Linux/BSD only):
-  #class:
+  class:
   # Application instance name
-  #instance: Alacritty
+    instance: Alacritty
   # General application class
-  #general: Alacritty
+    general: Alacritty
   # GTK theme variant (Linux/BSD only)
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark`
@@ -110,7 +110,7 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     #family: hack
-    family: Source Code Pro
+    family: SauceCodePro Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -122,8 +122,7 @@ font:
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: hack
-    family: Source Code Pro
-
+    family: SauceCodePro Nerd Font
     # The `style` can be specified to pick a specific face.
     style: Bold
 
@@ -134,8 +133,8 @@ font:
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: hack
-    family: Source Code Pro
-
+    family: SauceCodePro Nerd Font
+    #family: Source Code Pro
     # The `style` can be specified to pick a specific face.
     style: Italic
 
@@ -145,8 +144,9 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
-    family: Source Code Pro
+    #family: hack
+    family: SauceCodePro Nerd Font
+    # family: Source Code Pro
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic

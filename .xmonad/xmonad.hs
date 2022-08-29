@@ -42,6 +42,8 @@ import qualified Data.Map as M
 import qualified Data.ByteString as B
 
 import Control.Monad (liftM2)
+import Xmobar (xmobar)
+import Test.QuickCheck.Monadic (monitor)
 
 --mod4Mask= super key
 --mod1Mask= alt key
@@ -52,7 +54,7 @@ myModMask                     = mod4Mask
 mydefaults = def {
           normalBorderColor   = "#4c566a"
         , focusedBorderColor  = "#5eacac" --existing #5e81ac
-        , focusFollowsMouse   = True
+        , focusFollowsMouse   = False
         , mouseBindings       = myMouseBindings
         , workspaces          = myWorkspaces
         , keys                = myKeys
@@ -125,7 +127,7 @@ myManageHook = composeAll . concat $
 
 
     viewShift = doF . liftM2 (.) W.greedyView W.shift
-    myCFloats = ["mpv", "Archlinux-logout.py"]
+    myCFloats = ["mpv", "Archlinux-logout.py", "File-roller"]
 -- , "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "Zoom"]
     myTFloats = []
 -- "Downloads", "Save As..."
@@ -382,10 +384,10 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 --XMOBAR
 main = do
-
-        xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.xmobarrc" -- xmobar monitor 1
-        xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.xmobarrc" -- xmobar monitor 2
-        xmproc2 <- spawnPipe "xmobar -x 2 $HOME/.xmobarrc" -- xmobar monitor 3
+        xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.xmonad/xmobar/center-xmobarrc" -- xmobar left monitor
+        -- xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.xmobarrc" -- xmobar monitor 1
+        xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.xmonad/xmobar/left-xmobarrc" -- xmobar monitor 2
+        xmproc2 <- spawnPipe "xmobar -x 2 $HOME/.xmonad/xmobar/right-xmobarrc" -- xmobar monitor 3
         xmonad $ ewmh $ mydefaults {
         logHook =  dynamicLogWithPP $ def {
         ppOutput = \x -> System.IO.hPutStrLn xmproc0 x  >> System.IO.hPutStrLn xmproc1 x >> System.IO.hPutStrLn xmproc2 x

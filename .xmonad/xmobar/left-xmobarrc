@@ -23,13 +23,11 @@ Config {
    , alignSep         = "}{"
 	 , iconRoot					= ".xmonad/xpm/"
    , template         = "<fc=white><fn=2>  <icon=haskell_20.xpm/>   \
-												\</fn><fn=2><action=button=4><action=button=5>%UnsafeStdinReader%\
-												\</action></action></fn></fc> \
-												
-												\}<action=`gsimplecal` button=1>%date%</action>\
-                        
-												\{<fc=white> %eno1% | %update% | <fn=2>  </fn></fc> %kbd% |\
-												\ %multicpu%  |  %memory%  |<fc=white> <fn=2>  </fn> %uname% </fc> "
+							\</fn><fn=2><action=button=4><action=button=5>%UnsafeStdinReader%\
+							\</action></action></fn></fc> } { \
+							\<action=`gsimplecal` button=1>%date%</action> "
+							-- \{<fc=white> %eno1% | %update% | <fn=2>  </fn></fc> %kbd% |\
+							-- \ %multicpu%  |  %memory%  |<fc=white> <fn=2>  </fn> %uname% </fc> "
    , commands         =
       [ Run MultiCpu                            [ "--template" , "<fc=white><fn=2>  </fn></fc><fc=white></fc><total> %"
                                                 , "--Low"      , "50"        -- units: %
