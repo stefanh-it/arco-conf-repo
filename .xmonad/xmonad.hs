@@ -54,7 +54,7 @@ myModMask                     = mod4Mask
 mydefaults = def {
           normalBorderColor   = "#4c566a"
         , focusedBorderColor  = "#5eacac" --existing #5e81ac
-        , focusFollowsMouse   = False
+        , focusFollowsMouse   = True
         , mouseBindings       = myMouseBindings
         , workspaces          = myWorkspaces
         , keys                = myKeys
@@ -62,7 +62,7 @@ mydefaults = def {
         , borderWidth         = 3
         , layoutHook          = myLayoutHook
         , startupHook         = myStartupHook
-        , manageHook          = myManageHook
+        , manageHook          = myManageHook 
         , handleEventHook     = minimizeEventHook
         }
 
@@ -106,8 +106,8 @@ myWorkspaces = clickable . (map xmobarEscape) $ ["\61612","\61899","\61947","\61
 -- window manipulations
 myManageHook = composeAll . concat $
     [ 
-      [isDialog --> unfloat]
-    ,  [className =? c --> doCenterFloat | c <- myCFloats]
+      [isDialog --> doCenterFloat]
+    , [className =? c --> doCenterFloat | c <- myCFloats]
     , [title =? t --> doFloat | t <- myTFloats]
     , [resource =? r --> doFloat | r <- myRFloats]
     , [resource =? i --> doIgnore | i <- myIgnores]
@@ -121,24 +121,26 @@ myManageHook = composeAll . concat $
     , [className =? c --> doShift (myWorkspaces !! 7) <+> viewShift (myWorkspaces !! 7)        | c <- my8Shifts]
     , [className =? c --> doShift (myWorkspaces !! 8) <+> viewShift (myWorkspaces !! 8)        | c <- my9Shifts]
     , [className =? c --> doShift (myWorkspaces !! 9) <+> viewShift (myWorkspaces !! 9)        | c <- my10Shifts]
-       ]
+    , [isFullscreen --> doFullFloat] 
+    ]
+
     where
     unfloat = ask >>= doF . W.sink
 
 
     viewShift = doF . liftM2 (.) W.greedyView W.shift
-    myCFloats = ["mpv", "Archlinux-logout.py", "File-roller"]
+    myCFloats = ["mpv", "Archlinux-logout.py", "File-roller", "Downloads", "Save", "zoom"]
 -- , "Arcolinux-calamares-tool.py", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal", "Zoom"]
     myTFloats = []
 -- "Downloads", "Save As..."
     myRFloats = []
-    myIgnores = ["desktop_window", "Save As...", "Downloads", "Open", "Dialog"]
+    myIgnores = ["desktop_window"]
     my1Shifts = []
     my2Shifts = []
     my3Shifts = []
     my4Shifts = []
     my5Shifts = ["kdenlive", "spotify"]
-    my6Shifts = ["zoom "]
+    my6Shifts = ["zoom"]
     my7Shifts = ["virtualbox"]
     my8Shifts = ["thunderbird"]
     my9Shifts = ["telegram-desktop", "signal-desktop"]
@@ -153,7 +155,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   [ -- ((modMask, xK_e), spawn $ "thunar" )
    ((modMask, xK_c), spawn $ "conky-toggle" )
   , ((modMask, xK_f), sendMessage $ Toggle NBFULL)
-  , ((modMask, xK_h), spawn $ "alacritty -e htop" )
+  -- , ((modMask, xK_h), spawn $ "alacritty -e htop" )
   , ((modMask, xK_m), spawn $ "pragha" )
   , ((modMask, xK_q), kill )
   , ((modMask, xK_r), spawn $ "rofi-theme-selector" )
@@ -175,7 +177,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_F10), spawn $ "spotify" )
   -- , ((modMask, xK_F11), spawn $ "rofi -show drun -fullscreen" )
   -- , ((modMask, xK_F12), spawn $ "rofi -show drun" )
-
+  , ((modMask, xK_b), sendMessage ToggleStruts) 
   -- FUNCTION KEYS
   , ((0, xK_F12), spawn $ "xfce4-terminal" )
 
@@ -323,10 +325,13 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((controlMask .|. modMask, xK_Up), windows W.swapUp  )
 
   -- Shrink the master area.
-  , ((controlMask .|. shiftMask , xK_h), sendMessage Shrink)
-
+  -- , ((controlMask .|. shiftMask , xK_h), sendMessage Shrink)
+  , ((modMask, xK_h), sendMessage Shrink)
   -- Expand the master area.
-  , ((controlMask .|. shiftMask , xK_l), sendMessage Expand)
+  -- , ((controlMask .|. shiftMask , xK_l), sendMessage Expand)
+
+  , ((modMask, xK_l), sendMessage Expand)
+
 
 -- Push window back into tiling.
   -- , ((controlMask .|. shiftMask , xK_t), withFocused $ windows . W.sink) -- remove ctrl - shift + t for browser support
@@ -393,7 +398,7 @@ main = do
         ppOutput = \x -> System.IO.hPutStrLn xmproc0 x  >> System.IO.hPutStrLn xmproc1 x >> System.IO.hPutStrLn xmproc2 x
         , ppTitle =  xmobarColor myTitleColor "" . xmobarFont 0 . shorten 60
 
-				-- . wrap "<fn=0>""</fn>" --  (\ str -> "")
+     -- . wrap "<fn=0>""</fn>" --  (\ str -> "")
         , ppOrder = \(ws:l:t:_) -> [ws,l,t]
         , ppCurrent = xmobarColor myCurrentWSColor "" . wrap """"
         , ppVisible = xmobarColor myVisibleWSColor "" . wrap """"
@@ -402,12 +407,12 @@ main = do
         , ppUrgent = xmobarColor myUrgentWSColor ""
         , ppSep = "  "
         , ppWsSep = "  "
-        , ppLayout = (\ x -> case x of
+        , ppLayout = \ x -> case x of
            "Spacing Tall"                 -> "<fn=1>Tall</fn>"
            "Spacing Grid"                 -> "<fn=1>Grid</fn>"
            "Spacing Spiral"               -> "<fn=1>Spiral</fn>"
            "Spacing ThreeCol"             -> "<fn=1>ThreeColMid</fn>"
            "Spacing Full"                 -> "<fn=1>Full</fn>"
-           _                                         -> x )
+           _                                         -> x 
  }
 }

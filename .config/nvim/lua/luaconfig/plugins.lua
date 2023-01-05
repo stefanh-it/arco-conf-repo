@@ -77,6 +77,12 @@ return require('packer').startup({
             { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' },
         })
 
+
+        --------------------------
+        -- Matchparen for Coloring --
+        -- -------------------------
+        use ('monkoose/matchparen.nvim')
+
         --------------------------
         -- Editor UI Niceties --
         --------------------------

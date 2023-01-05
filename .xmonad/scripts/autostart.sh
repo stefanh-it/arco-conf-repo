@@ -19,6 +19,9 @@ xrandr --output DP-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --
 #change your keyboard if you need it
 setxkbmap -layout de &
 
+#start thunar in daemon mode
+thunar --daemon &
+
 #cursor active at boot
 xsetroot -cursor_name left_ptr &
 
