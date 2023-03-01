@@ -3,7 +3,7 @@
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "args": ["--lsp"],
-      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml", "xmobarrc" ],
+      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml", "*xmobarrc" ],
       "filetypes": ["haskell", "lhaskell"]
     }
   }

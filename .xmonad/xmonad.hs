@@ -121,7 +121,8 @@ myManageHook = composeAll . concat $
     , [className =? c --> doShift (myWorkspaces !! 7) <+> viewShift (myWorkspaces !! 7)        | c <- my8Shifts]
     , [className =? c --> doShift (myWorkspaces !! 8) <+> viewShift (myWorkspaces !! 8)        | c <- my9Shifts]
     , [className =? c --> doShift (myWorkspaces !! 9) <+> viewShift (myWorkspaces !! 9)        | c <- my10Shifts]
-    , [isFullscreen --> doFullFloat] 
+    , [isFullscreen --> doFullFloat]
+    , [className =? "Xfce4-notifyd" --> doIgnore]
     ]
 
     where
@@ -134,7 +135,7 @@ myManageHook = composeAll . concat $
     myTFloats = []
 -- "Downloads", "Save As..."
     myRFloats = []
-    myIgnores = ["desktop_window"]
+    myIgnores = ["desktop_window", "Xfce4-notifyd"]
     my1Shifts = []
     my2Shifts = []
     my3Shifts = []
@@ -179,7 +180,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- , ((modMask, xK_F12), spawn $ "rofi -show drun" )
   , ((modMask, xK_b), sendMessage ToggleStruts) 
   -- FUNCTION KEYS
-  , ((0, xK_F12), spawn $ "xfce4-terminal" )
+  , ((modMask, xK_F12), spawn $ "xfce4-terminal" )
 
   -- SUPER + SHIFT KEYS
 
@@ -398,7 +399,7 @@ main = do
         ppOutput = \x -> System.IO.hPutStrLn xmproc0 x  >> System.IO.hPutStrLn xmproc1 x >> System.IO.hPutStrLn xmproc2 x
         , ppTitle =  xmobarColor myTitleColor "" . xmobarFont 0 . shorten 60
 
-     -- . wrap "<fn=0>""</fn>" --  (\ str -> "")
+        -- . wrap "<fn=0>""</fn>" --  (\ str -> "")
         , ppOrder = \(ws:l:t:_) -> [ws,l,t]
         , ppCurrent = xmobarColor myCurrentWSColor "" . wrap """"
         , ppVisible = xmobarColor myVisibleWSColor "" . wrap """"
@@ -408,11 +409,11 @@ main = do
         , ppSep = "  "
         , ppWsSep = "  "
         , ppLayout = \ x -> case x of
-           "Spacing Tall"                 -> "<fn=1>Tall</fn>"
-           "Spacing Grid"                 -> "<fn=1>Grid</fn>"
-           "Spacing Spiral"               -> "<fn=1>Spiral</fn>"
-           "Spacing ThreeCol"             -> "<fn=1>ThreeColMid</fn>"
-           "Spacing Full"                 -> "<fn=1>Full</fn>"
+           "Spacing Tall"                 -> "<fn=0>| Stack |</fn>"
+           "Spacing Grid"                 -> "<fn=0>| Grid |</fn>"
+           "Spacing Spiral"               -> "<fn=0>| Spiral |</fn>"
+           "Spacing ThreeCol"             -> "<fn=0>| ThreeColMid |</fn>"
+           "Spacing Full"                 -> "<fn=0>| Full |</fn>"
            _                                         -> x 
  }
 }

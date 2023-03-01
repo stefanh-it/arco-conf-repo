@@ -1,9 +1,15 @@
 -- Thanks to krive001 to share the code of xmobar
 -- https://github.com/krive001/xmonad-xmobar
+-- font = "xft:Noto Sans LGC:size=11:style=Regular",
+-- additionalFonts = ["xft:Noto Sans:size=10:style=Bold","xft:FontAwesome:style=Regular:size=13"]
 
 Config {
-    font = "xft:Noto Sans LGC:size=11:style=Regular",
-    additionalFonts = ["xft:Noto Sans:size=10:style=Bold","xft:FontAwesome:style=Regular:size=13"]
+    font            = "Source Code Pro Medium Regular 12"
+   , additionalFonts = [ 
+    "Mononoki 12"
+   , "Font Awesome 6 Free Solid 12"
+   , "Font Awesome 6 Brands 12"
+   ]
    , bgColor          = "#536878" --"#2F343F"
    , fgColor          = "white"
    , position         = TopSize C 100 30
@@ -28,10 +34,10 @@ Config {
 												
 												\}<action=`gsimplecal` button=1>%date%</action>\
                         
-												\{<fc=white> %eno1% | %update% | <fn=2>  </fn></fc> %kbd% |\
-												\ %multicpu%  |  %memory%  |<fc=white> <fn=2>  </fn> %uname% </fc> "
+												\{<fc=white>%eno1%|%update% | <fn=2> </fn></fc>%kbd% |\
+												\ %multicpu%|%memory%|<fc=white><fn=2>  </fn> %uname% </fc> "
    , commands         =
-      [ Run MultiCpu                            [ "--template" , "<fc=white><fn=2>  </fn></fc><fc=white></fc><total> %"
+      [ Run MultiCpu                            [ "--template" , "<fc=white><fn=2> </fn></fc><fc=white></fc><total>% "
                                                 , "--Low"      , "50"        -- units: %
                                                 , "--High"     , "85"        -- units: %
                                                 , "--low"      , "#ffffff"
@@ -47,7 +53,7 @@ Config {
                                                 , "--high"     , "#fd0537"
                                                ] 10
 
-      , Run Memory                              [ "--template" ,"<fc=white><fn=2> </fn></fc><fc=white></fc><usedratio> %"
+      , Run Memory                              [ "--template" ,"<fc=white><fn=2>  </fn></fc><fc=white></fc><usedratio>% "
                                                 ] 10
 
 
@@ -57,7 +63,7 @@ Config {
 
 --      , Run Com "/bin/bash" ["-c", "XMgetvolume"]  "XVol" 10
 
-      , Run Network				 "eno1"		   [ "--template" , "<fc=white><fn=2><icon=net_down_20.xpm/></fn> <rx>  | <fn=2><icon=net_up_20.xpm/></fn> <tx> </fc>"
+      , Run Network				 "eno1"		   [ "--template" , "<fc=white><fn=2><icon=net_down_20.xpm/></fn><rx> | <fn=2><icon=net_up_20.xpm/></fn><tx> </fc>"
 											    , "-S" , "True" 
 											  ] 10
 
@@ -68,7 +74,8 @@ Config {
 
       , Run UnsafeStdinReader
 
-	    , Run Com "/bin/bash" ["-c",  "XMKupdate"] "update" 600 
+      -- , Run Com "/bin/bash" ["-c",  "XMKupdate"] "update" 600 
+      , Run Com "/bin/bash" ["-c", "~/.xmonad/scripts/updates.sh"] "update" 600
 
       , Run Date                                "CW%V | %d.%m.%Y | %H:%M" "date" 60
 

@@ -17,6 +17,8 @@ local ok, _ = pcall(vim.cmd, 'colorscheme base16-ayu-dark')
 vim.cmd [[
 let loaded_netrwPlugin = 1
 
+let g:python3_host_prog = '/home/stefan/.config/nvim/pynvim_env/bin/python'
+
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup

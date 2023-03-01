@@ -1,9 +1,16 @@
 -- Thanks to krive001 to share the code of xmobar
 -- https://github.com/krive001/xmonad-xmobar
+-- font = "xft:Noto Sans LGC:size=11:style=Regular",
+  --   additionalFonts = ["xft:Noto Sans:size=10:style=Bold","xft:FontAwesome:style=Regular:size=13"]
 
 Config {
-    font = "xft:Noto Sans LGC:size=11:style=Regular",
-    additionalFonts = ["xft:Noto Sans:size=10:style=Bold","xft:FontAwesome:style=Regular:size=13"]
+    font            = "Source Code Pro Medium Regular 12"
+   , additionalFonts = [ 
+                     "Mononoki 11"
+   ,                 "Font Awesome 6 Free Solid 12"
+   ,                 "Font Awesome 6 Brands 12"
+   ]
+
    , bgColor          = "#536878" --"#2F343F"
    , fgColor          = "white"
    , position         = TopSize C 100 30

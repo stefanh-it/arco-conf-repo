@@ -17,7 +17,7 @@ xrandr --output DP-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --
 
 
 #change your keyboard if you need it
-setxkbmap -layout de &
+setxkbmap -layout us -variant altgr-intl -option caps:swapescape &
 
 #start thunar in daemon mode
 thunar --daemon &
