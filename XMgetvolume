@@ -2,6 +2,7 @@
 # Get the maximum volume of any pulseaudio sink channel
 # amixer get Master | egrep -o "[0-9]+%"
 # From Arcolinux.com -- Used for the inner workings of status bar config
+# move to /usr/local/bin/XMgetvolume
 
 mute=$(amixer get Master | awk  '/'Front' 'Left:' 'Playback'/  {print $6}')
 
