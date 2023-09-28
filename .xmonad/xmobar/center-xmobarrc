@@ -1,11 +1,11 @@
 -- Thanks to krive001 to share the code of xmobar
 -- https://github.com/krive001/xmonad-xmobar
--- font = "xft:Noto Sans LGC:size=11:style=Regular",
--- additionalFonts = ["xft:Noto Sans:size=10:style=Bold","xft:FontAwesome:style=Regular:size=13"]
+-- font = "xft:IntoneMono NFM:size=11:style=Regular",
+-- additionalFonts = ["xft:IntoneMono NFM:size=10:style=Bold","xft:FontAwesome:style=Regular:size=13"]
 
 Config {
-    font            = "Source Code Pro Medium Regular 12"
-   , additionalFonts = [ 
+    font              = "IntoneMono Nerd Font Mono Medium 12"
+   , additionalFonts  = [ 
     "Mononoki 12"
    , "Font Awesome 6 Free Solid 12"
    , "Font Awesome 6 Brands 12"
@@ -14,15 +14,15 @@ Config {
    , fgColor          = "white"
    , position         = TopSize C 100 30
    , textOffset       = -1
-   , iconOffset       = -1
+   , iconOffset       = 0
    , alpha            = 255
    , border           = BottomB
    , borderWidth      = 0
    , borderColor      = "#c0c5ce"
    , lowerOnStart     = True
    , hideOnStart      = False
-   , allDesktops      = True
-   , overrideRedirect = True
+   , allDesktops      = False 
+   , overrideRedirect = False 
    , pickBroadest     = True
    , persistent       = True
    , sepChar          = "%"
@@ -35,7 +35,7 @@ Config {
 												\}<action=`gsimplecal` button=1>%date%</action>\
                         
 												\{<fc=white>%eno1%|%update% | <fn=2> </fn></fc>%kbd% |\
-												\ %multicpu%|%memory%|<fc=white><fn=2>  </fn> %uname% </fc> "
+												\ %multicpu%|%memory%|<fc=white><fn=2> </fn> %uname% </fc> "
    , commands         =
       [ Run MultiCpu                            [ "--template" , "<fc=white><fn=2> </fn></fc><fc=white></fc><total>% "
                                                 , "--Low"      , "50"        -- units: %

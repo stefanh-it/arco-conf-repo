@@ -52,17 +52,17 @@ import Test.QuickCheck.Monadic (monitor)
 
 myModMask                     = mod4Mask
 mydefaults = def {
-          normalBorderColor   = "#4c566a"
-        , focusedBorderColor  = "#5eacac" --existing #5e81ac
+          normalBorderColor   = "#3A4D54"--"#4c566a"
+        , focusedBorderColor  = "#D8F4FF"--"#5eacac" --existing #5e81ac
         , focusFollowsMouse   = True
         , mouseBindings       = myMouseBindings
         , workspaces          = myWorkspaces
         , keys                = myKeys
         , modMask             = myModMask
         , borderWidth         = 3
-        , layoutHook          = myLayoutHook
+        , layoutHook          = avoidStruts $ myLayoutHook
         , startupHook         = myStartupHook
-        , manageHook          = myManageHook 
+        , manageHook          = manageDocks <+> myManageHook 
         , handleEventHook     = minimizeEventHook
         }
 
@@ -106,7 +106,8 @@ myWorkspaces = clickable . (map xmobarEscape) $ ["\61612","\61899","\61947","\61
 -- window manipulations
 myManageHook = composeAll . concat $
     [ 
-      [isDialog --> doCenterFloat]
+      [isFullscreen --> doFullFloat]    
+    , [isDialog --> doCenterFloat]
     , [className =? c --> doCenterFloat | c <- myCFloats]
     , [title =? t --> doFloat | t <- myTFloats]
     , [resource =? r --> doFloat | r <- myRFloats]
@@ -121,7 +122,7 @@ myManageHook = composeAll . concat $
     , [className =? c --> doShift (myWorkspaces !! 7) <+> viewShift (myWorkspaces !! 7)        | c <- my8Shifts]
     , [className =? c --> doShift (myWorkspaces !! 8) <+> viewShift (myWorkspaces !! 8)        | c <- my9Shifts]
     , [className =? c --> doShift (myWorkspaces !! 9) <+> viewShift (myWorkspaces !! 9)        | c <- my10Shifts]
-    , [isFullscreen --> doFullFloat]
+
     , [className =? "Xfce4-notifyd" --> doIgnore]
     ]
 
@@ -135,7 +136,7 @@ myManageHook = composeAll . concat $
     myTFloats = []
 -- "Downloads", "Save As..."
     myRFloats = []
-    myIgnores = ["desktop_window", "Xfce4-notifyd"]
+    myIgnores = ["desktop_window", "Xfce4-notifyd", "Conky", "conky" ]
     my1Shifts = []
     my2Shifts = []
     my3Shifts = []
@@ -144,8 +145,8 @@ myManageHook = composeAll . concat $
     my6Shifts = ["zoom"]
     my7Shifts = ["virtualbox"]
     my8Shifts = ["thunderbird"]
-    my9Shifts = ["telegram-desktop", "signal-desktop"]
-    my10Shifts = ["Bitwarden", "discord"]
+    my9Shifts = ["telegram-desktop", "signal-desktop", "discord"]
+    my10Shifts = ["Bitwarden"]
 
 -- keys config
 
@@ -185,7 +186,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- SUPER + SHIFT KEYS
 
   , ((modMask .|. shiftMask , xK_Return ), spawn $ "thunar")
-  , ((modMask .|. shiftMask , xK_d ), spawn $ "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'")
+  --, ((modMask .|. shiftMask , xK_d ), spawn $ "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'Intone Mono Nerd Font:bold:pixelsize=14'")
+  , ((modMask .|. shiftMask , xK_d ), spawn $ "dmenu_run -i -nb '#536878' -nf '#ffffff' -sb '#ffffff' -sf '#191919' -fn 'Intone Mono Nerd Font:bold:pixelsize=14'")
   , ((modMask .|. shiftMask , xK_r ), spawn $ "xmonad --recompile && xmonad --restart")
   , ((modMask .|. shiftMask , xK_q ), kill)
   -- , ((modMask .|. shiftMask , xK_x ), io (exitWith ExitSuccess))

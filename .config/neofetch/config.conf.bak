@@ -5,14 +5,14 @@ print_info() {
     info underline
 
     info "OS" distro
-# info "Host" model
+    info "Host" model
     info "Kernel" kernel
     info "Uptime" uptime
     info "Packages" packages
     info "Shell" shell
-    #info "Resolution" resolution
+    info "Resolution" resolution
     info "DE" de
-    #info "WM" wm
+    info "WM" wm
     info "WM Theme" wm_theme
     info "Theme" theme
     info "Icons" icons
@@ -28,8 +28,8 @@ print_info() {
     info "Font" font
     # info "Song" song
     # [[ "$player" ]] && prin "Music Player" "$player"
-    #info "Local IP" local_ip
-    #info "Public IP" public_ip
+    info "Local IP" local_ip
+    info "Public IP" public_ip
     info "Users" users
     info "Locale" locale  # This only works on glibc systems.
 
@@ -374,8 +374,7 @@ de_version="on"
 # disk_show=('/'):
 #      'Disk (/): 74G / 118G (66%)'
 #
-disk_show=('/' '/home')
-  
+disk_show=('/' '/dev/nvme1n1p4')
 
 # Disk subtitle.
 # What to append to the Disk subtitle.
@@ -399,7 +398,7 @@ disk_show=('/' '/home')
 # none:   'Disk: 74G / 118G (66%)'
 #         'Disk: 74G / 118G (66%)'
 #         'Disk: 74G / 118G (66%)'
-#disk_subtitle="mount"
+disk_subtitle="mount"
 
 # Disk percent.
 # Show/Hide disk percent.

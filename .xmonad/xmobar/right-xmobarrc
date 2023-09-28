@@ -4,7 +4,7 @@
   --   additionalFonts = ["xft:Noto Sans:size=10:style=Bold","xft:FontAwesome:style=Regular:size=13"]
 
 Config {
-    font            = "Source Code Pro Medium Regular 12"
+    font            = "IntoneMono Nerd Font Mono Medium 12"
    , additionalFonts = [ 
                      "Mononoki 11"
    ,                 "Font Awesome 6 Free Solid 12"
@@ -22,8 +22,8 @@ Config {
    , borderColor      = "#c0c5ce"
    , lowerOnStart     = True
    , hideOnStart      = False
-   , allDesktops      = True
-   , overrideRedirect = True
+   , allDesktops      = False
+   , overrideRedirect = False 
    , pickBroadest     = True
    , persistent       = True
    , sepChar          = "%"
