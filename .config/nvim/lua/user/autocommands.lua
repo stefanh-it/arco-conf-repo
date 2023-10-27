@@ -17,6 +17,7 @@ vim.cmd [[
     autocmd!
     autocmd FileType markdown setlocal wrap
     autocmd FileType markdown setlocal spell
+    autocmd BufWritePost *.md !markdownlint %
   augroup end
 
   augroup _auto_resize
@@ -29,11 +30,18 @@ vim.cmd [[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
 
-  augroup _hover_behavior
+
+  augroup _InsertCharPre
     autocmd!
-    autocmd CursorHold * lua show_diagnostics_float()
+    autocmd InsertCharPre * silent! call copilot#Start ()
   augroup end
+      
+
 ]]
+-- augroup _hover_behavior
+-- autocmd!
+-- autocmd CursorHold * lua show_diagnostics_float()
+-- augroup end
 
 -- Autoformat
 -- augroup _lsp

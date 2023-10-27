@@ -167,7 +167,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_x), spawn $ "archlinux-logout" )
   , ((modMask, xK_Escape), spawn $ "xkill" )
   , ((modMask, xK_Return), spawn $ "alacritty -e fish" )
-  , ((modMask, xK_F1), spawn $ "brave" )
+  , ((modMask, xK_F1), spawn $ "brave --profile-directory='Default'" )
   , ((modMask, xK_F2), spawn $ "thunar" )
   , ((modMask, xK_F3), spawn $ "google-chrome-stable" )
   -- , ((modMask, xK_F4), spawn $ "gimp" )
@@ -363,8 +363,11 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   --Belgian Azerty users use this line
   --   | (i, k) <- zip (XMonad.workspaces conf) [xK_ampersand, xK_eacute, xK_quotedbl, xK_apostrophe, xK_parenleft, xK_section, xK_egrave, xK_exclam, xK_ccedilla, xK_agrave]
 
-      , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)
-      , (\i -> W.greedyView i . W.shift i, shiftMask)]]
+-- Window Behaviour when sending it to another window
+    , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask), (W.shift, shiftMask)]]
+      -- old config
+      -- , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)
+      -- , (\i -> W.greedyView i . W.shift i, shiftMask)]]
 
   ++
   -- ctrl-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3

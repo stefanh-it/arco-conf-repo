@@ -20,10 +20,10 @@ vim.g.maplocalleader = " "
 
 -- Harpoon
 
-local mark = require ("harpoon.mark")
-local ui = require ("harpoon.ui")
-keymap("n", "<leader>mh", mark.add_file )
-keymap("n", "<A-h>", ui.toggle_quick_menu )
+--local mark = require ("harpoon.mark")
+--local ui = require ("harpoon.ui")
+--keymap("n", "<leader>mh", mark.add_file )
+--keymap("n", "<A-h>", ui.toggle_quick_menu )
 
 keymap("n", "0", "0", opts)
 --[[ Hover actions for LSP ]]
